@@ -5,12 +5,19 @@ TAX_RATES = ['', 0.1, 0.15, 0.25, 0.28, 0.33, 0.35, 0.396]
 ONE_SUBJECT_LOWER_LIMITS = ['', 0, 9076, 36901, 89351, 186351, 405101, 406751]
 MARRIED_COUPLE_LOWER_LIMITS = ['', 0, 18151, 73801, 148851, 226851, 405101, 457601]
 ONE_PARENT_LOWER_LIMITS = ['', 0, 12951, 49401, 127551, 206601, 405101, 432201]
+
+
 def year_income():
+    '''
+    The function calculates the annual income.
+    '''
+
     amount = 0
     for month in range(1, MAX_MONTH + 1):
-        value = float(input(f'Доход в {ru.NAME[month]} [USD]: '))
+        value = float(input(f'{ru.YEAR_INCOME} {ru.NAME[month]} [USD]: '))
         amount += value
     return amount
+
 
 def free_tax():
     '''
@@ -22,26 +29,30 @@ def free_tax():
         amount += value
     return amount
 
+
 def sum_series_one_subject(n, D):
     res = 0
     for i in range(1, n):
-        value = TAX_RATES[i]*(D - ONE_SUBJECT_LOWER_LIMITS[i])
+        value = TAX_RATES[i] * (D - ONE_SUBJECT_LOWER_LIMITS[i])
         res += value
     return res
+
 
 def sum_series_married_couple(n, D):
     res = 0
     for i in range(1, n):
-        value = TAX_RATES[i]*(D - MARRIED_COUPLE_LOWER_LIMITS[i])
+        value = TAX_RATES[i] * (D - MARRIED_COUPLE_LOWER_LIMITS[i])
         res += value
     return res
+
 
 def sum_series_one_parent(n, D):
     res = 0
     for i in range(1, n):
-        value = TAX_RATES[i]*(D - ONE_PARENT_LOWER_LIMITS[i])
+        value = TAX_RATES[i] * (D - ONE_PARENT_LOWER_LIMITS[i])
         res += value
     return res
+
 
 def one_subject_tax(D):
     amount = 0
@@ -62,6 +73,7 @@ def one_subject_tax(D):
 
     return amount
 
+
 def married_couple_tax(D):
     amount = 0
     if 0 < D <= 9075:
@@ -80,6 +92,7 @@ def married_couple_tax(D):
         amount = sum_series_married_couple(7, D)
 
     return amount
+
 
 def one_parent_tax(D):
     amount = 0
@@ -102,11 +115,11 @@ def one_parent_tax(D):
 
 
 if __name__ == '__main__':
-    print('Укажите категорию налогоплательщика: ')
-    print('1. Субъект')
-    print('2. Супружеская пара')
-    print('3. Один родитель')
-    category = int(input('Введите значение [1-3]: \n'))
+    print(f'{ru.CATEGORY}')
+    print(f'{ru.SUBJECT}')
+    print(f'{ru.COUPLE}')
+    print(f'{ru.PARENT}')
+    category = int(input(f'{ru.ENTER} \n'))
     all_year_income = year_income()
     print(f'{all_year_income:.0f}')
     free_income = free_tax()
@@ -121,4 +134,4 @@ if __name__ == '__main__':
         else:
             year_tax = one_parent_tax(all_year_income)
     print(f'{year_tax:.0f}')
-    print(f'{year_tax/12:.0f}')
+    print(f'{year_tax / 12:.0f}')
