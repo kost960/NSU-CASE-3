@@ -32,7 +32,7 @@ def free_tax():
 
 def sum_series_one_subject(n, D):
     '''
-    Auxiliary function that calculates tax on an interval
+    Function that calculates tax on an interval.
     '''
     res = 0
     for i in range(1, n):
@@ -43,7 +43,7 @@ def sum_series_one_subject(n, D):
 
 def sum_series_married_couple(n, D):
     '''
-    Auxiliary function that calculates tax on an interval
+    Function that calculates tax on an interval.
     '''
     res = 0
     for i in range(1, n):
@@ -54,7 +54,7 @@ def sum_series_married_couple(n, D):
 
 def sum_series_one_parent(n, D):
     '''
-    Auxiliary function that calculates tax on an interval
+    Function that calculates tax on an interval.
     '''
     res = 0
     for i in range(1, n):
@@ -64,6 +64,9 @@ def sum_series_one_parent(n, D):
 
 
 def one_subject_tax(D):
+    '''
+    Function that calculates tax for one subject.
+    '''
     amount = 0
     if 0 < D <= 9075:
         amount = sum_series_one_subject(1, D)
@@ -84,8 +87,11 @@ def one_subject_tax(D):
 
 
 def married_couple_tax(D):
+    '''
+    Function that calculates tax for couple.
+    '''
     amount = 0
-    if 0 < D <= 9075:
+    if 0 < D <= 18150:
         amount = sum_series_married_couple(1, D)
     elif 18151 <= D <= 73800:
         amount = sum_series_married_couple(2, D)
@@ -104,6 +110,9 @@ def married_couple_tax(D):
 
 
 def one_parent_tax(D):
+    '''
+    Function that calculates tax for one parent.
+    '''
     amount = 0
     if 0 < D <= 12950:
         amount = sum_series_one_subject(1, D)
