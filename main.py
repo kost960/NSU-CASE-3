@@ -31,6 +31,9 @@ def free_tax():
 
 
 def sum_series_one_subject(n, D):
+    '''
+    Auxiliary function that calculates tax on an interval
+    '''
     res = 0
     for i in range(1, n):
         value = TAX_RATES[i] * (D - ONE_SUBJECT_LOWER_LIMITS[i])
@@ -39,6 +42,9 @@ def sum_series_one_subject(n, D):
 
 
 def sum_series_married_couple(n, D):
+    '''
+    Auxiliary function that calculates tax on an interval
+    '''
     res = 0
     for i in range(1, n):
         value = TAX_RATES[i] * (D - MARRIED_COUPLE_LOWER_LIMITS[i])
@@ -47,6 +53,9 @@ def sum_series_married_couple(n, D):
 
 
 def sum_series_one_parent(n, D):
+    '''
+    Auxiliary function that calculates tax on an interval
+    '''
     res = 0
     for i in range(1, n):
         value = TAX_RATES[i] * (D - ONE_PARENT_LOWER_LIMITS[i])
@@ -123,8 +132,8 @@ if __name__ == '__main__':
     all_year_income = year_income()
     print(f'{all_year_income:.0f}')
     free_income = free_tax()
-    print(f'{free_income:.0f}')
-    print(f'{all_year_income - free_income:.0f}')
+    print(f'{ru.FREE_INCOME} {free_income:.0f}')
+    print(f'{ru.NOT_FREE_INCOME} {all_year_income - free_income:.0f}')
     year_tax = 0
     if category == 1:
         year_tax = one_subject_tax(all_year_income)
@@ -133,5 +142,5 @@ if __name__ == '__main__':
             year_tax = married_couple_tax(all_year_income)
         else:
             year_tax = one_parent_tax(all_year_income)
-    print(f'{year_tax:.0f}')
-    print(f'{year_tax / 12:.0f}')
+    print(f'{ru.YEAR_TAX} {year_tax:.0f}')
+    print(f'{ru.MONTH_TAX} {year_tax / 12:.0f}')
