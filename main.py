@@ -138,10 +138,9 @@ if __name__ == '__main__':
     year_tax = 0
     if category == 1:
         year_tax = one_subject_tax(all_year_income)
+    elif category == 2:
+        year_tax = married_couple_tax(all_year_income)
     else:
-        if category == 2:
-            year_tax = married_couple_tax(all_year_income)
-        else:
-            year_tax = one_parent_tax(all_year_income)
+        year_tax = one_parent_tax(all_year_income)
     print(f'{ru.YEAR_TAX} {year_tax:.0f}')
     print(f'{ru.MONTH_TAX} {year_tax / 12:.0f}')
