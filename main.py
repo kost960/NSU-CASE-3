@@ -37,10 +37,11 @@ def sum_series_one_subject(n, D):
     '''
     Function that calculates tax on an interval.
     '''
-    res = 0
+    res = TAX_RATES[n] * (D - ONE_SUBJECT_LOWER_LIMITS[n])
     for i in range(1, n):
-        value = TAX_RATES[i] * (D - ONE_SUBJECT_LOWER_LIMITS[i])
+        value = TAX_RATES[n - i] * ((ONE_SUBJECT_LOWER_LIMITS[n+1 - i]) - (ONE_SUBJECT_LOWER_LIMITS[n - i]))
         res += value
+
     return res
 
 
@@ -48,10 +49,11 @@ def sum_series_married_couple(n, D):
     '''
     Function that calculates tax on an interval.
     '''
-    res = 0
+    res = TAX_RATES[n] * (D - MARRIED_COUPLE_LOWER_LIMITS[n])
     for i in range(1, n):
-        value = TAX_RATES[i] * (D - MARRIED_COUPLE_LOWER_LIMITS[i])
+        value = TAX_RATES[n - i] * ((MARRIED_COUPLE_LOWER_LIMITS[n + 1 - i]) - MARRIED_COUPLE_LOWER_LIMITS[n - i])
         res += value
+
     return res
 
 
@@ -59,10 +61,11 @@ def sum_series_one_parent(n, D):
     '''
     Function that calculates tax on an interval.
     '''
-    res = 0
+    res = TAX_RATES[n] * (D - ONE_PARENT_LOWER_LIMITS[n])
     for i in range(1, n):
-        value = TAX_RATES[(n+1)-i] * (D - ONE_PARENT_LOWER_LIMITS[i])
+        value = TAX_RATES[n - i] * ((ONE_PARENT_LOWER_LIMITS[n + 1 - i]) - (ONE_PARENT_LOWER_LIMITS[n - i]))
         res += value
+
     return res
 
 
