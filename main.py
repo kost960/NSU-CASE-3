@@ -61,7 +61,7 @@ def sum_series_one_parent(n, D):
     '''
     res = 0
     for i in range(1, n):
-        value = TAX_RATES[i] * (D - ONE_PARENT_LOWER_LIMITS[i])
+        value = TAX_RATES[(n+1)-i] * (D - ONE_PARENT_LOWER_LIMITS[i])
         res += value
     return res
 
@@ -149,10 +149,10 @@ if __name__ == '__main__':
     print(f'{ru.NOT_FREE_INCOME} {all_year_income - free_income:.0f}')
     year_tax = 0
     if category == 1:
-        year_tax = one_subject_tax(all_year_income)
+        year_tax = one_subject_tax(all_year_income - free_income)
     elif category == 2:
-        year_tax = married_couple_tax(all_year_income)
+        year_tax = married_couple_tax(all_year_income - free_income)
     else:
-        year_tax = one_parent_tax(all_year_income)
+        year_tax = one_parent_tax(all_year_income - free_income)
     print(f'{ru.YEAR_TAX} {year_tax:.0f}')
     print(f'{ru.MONTH_TAX} {year_tax / 12:.0f}')
