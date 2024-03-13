@@ -1,3 +1,6 @@
+# Case-study #3
+# Developers: Maltsev A., Kolchik K.
+#
 import ru_local as ru
 
 MAX_MONTH = 12
